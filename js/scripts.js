@@ -1,4 +1,5 @@
-var factorial = function(number) {
+// Iterative
+var iFactorial = function(number) {
   var result = 1;
   while (number > 0) {
     result *= number;
@@ -7,19 +8,25 @@ var factorial = function(number) {
   return result;
 };
 
-// $(document).ready(function() {
-//   $("form#leap-year").submit(function(event) {
-//     var year = parseInt($("input#year").val());
-//     var result = leapYear(year);
-//
-//     $(".year").text(year);
-//     if (!result) {
-//       $(".not").text("not");
-//     } else {
-//       $(".not").empty();
-//     }
-//
-//     $("#result").show();
-//     event.preventDefault();
-//   });
-// });
+// Recursive
+var rFactorial = function(number) {
+  if (number <= 1) {
+    return 1;
+  } else {
+    return number * rFactorial(number - 1);
+  }
+}
+
+$(document).ready(function() {
+  $("form#factorial").submit(function(event) {
+    var number = parseInt($("input#number").val());
+    var result = rFactorial(number);
+
+    // Populate data into number and factorialResult span field respectively
+    $(".number").text(number);
+    $(".factorialResult").text(result);
+
+    $("#result").show();
+    event.preventDefault();
+  });
+});
